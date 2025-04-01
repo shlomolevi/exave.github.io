@@ -3,100 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>База отдыха "АХиЛЕС"</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Космический кликер</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">АХиЛЕС</div>
-            <div class="mobile-menu">☰</div>
-            <div class="nav-links">
-                <a href="#about">О нас</a>
-                <a href="#accommodation">Размещение</a>
-                <a href="#gallery">Галерея</a>
-                <a href="#contacts">Контакты</a>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>База отдыха "АХиЛЕС"</h1>
-            <p>Комфортабельный загородный комплекс с сауной и бассейном</p>
-            <button class="cta-button">Забронировать сейчас</button>
+    <div class="game-container">
+        <h1>Уничтожь астероиды! <span id="score">0</span></h1>
+        <canvas id="gameCanvas"></canvas>
+        <div class="controls">
+            <button id="startBtn">Старт!</button>
+            <div id="timer">00:30</div>
         </div>
-    </section>
-
-    <section class="section" id="about">
-        <h2>О нашем комплексе</h2>
-        <p>Расположенный в живописном лесном массиве, наш комплекс предлагает:</p>
-        <ul class="amenities">
-            <li>3 современных коттеджа</li>
-            <li>Русская баня на дровах</li>
-            <li>Крытый бассейн с подогревом</li>
-            <li>Детская игровая площадка</li>
-            <li>Беседки с мангалами</li>
-        </ul>
-    </section>
-
-    <section class="section" id="accommodation">
-        <h2>Наши домики</h2>
-        <div class="accommodation-cards">
-            <div class="card">
-                <img src="https://stroygroup-sk.ru/wp-content/uploads/2018/09/33.jpg" alt="Главный корпус">
-                <div class="card-content">
-                    <h3>Главный корпус</h3>
-                    <ul class="amenities">
-                        <li>Площадь: 150 м²</li>
-                        <li>До 6 человек</li>
-                        <li>2 спальни + гостиная</li>
-                        <li>Собственная сауна</li>
-                        <li>Полностью оборудованная кухня</li>
-                    </ul>
-                    <button class="cta-button">Подробнее</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="gallery">
-        <h2>Фотогалерея</h2>
-        <div class="gallery">
-            <img src="https://stroygroup-sk.ru/wp-content/uploads/2018/09/33.jpg" alt="Главный корпус">
-            <img src="images/interior1.jpg" alt="Интерьер">
-            <img src="images/territory.jpg" alt="Территория">
-        </div>
-    </section>
-
-    <section class="section" id="contacts">
-        <h2>Контакты</h2>
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <input type="text" placeholder="Ваше имя" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Телефон" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Сообщение" rows="5" required></textarea>
-                </div>
-                <button class="cta-button">Отправить заявку</button>
-            </form>
-        </div>
-        <div class="contact-info">
-            <p>Адрес: Ленинградская область, Курортный район</p>
-            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2024 База отдыха "АХиЛЕС"</p>
-        <p>Все права защищены</p>
-    </footer>
-
-    <script src="js/script.js"></script>
+    </div>
+    <script src="game.js"></script>
 </body>
 </html>
