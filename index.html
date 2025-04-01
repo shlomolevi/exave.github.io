@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космический кликер</title>
+    <title>Игра с музыкой</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Уничтожь астероиды! <span id="score">0</span></h1>
-        <canvas id="gameCanvas"></canvas>
-        <div class="controls">
-            <button id="startBtn">Старт!</button>
-            <div id="timer">00:30</div>
-        </div>
+    <div id="startScreen">
+        <button id="startButton">Start Game</button>
     </div>
+    <canvas id="gameCanvas" style="display: none;"></canvas>
     <script src="js/game.js"></script>
 </body>
 </html>

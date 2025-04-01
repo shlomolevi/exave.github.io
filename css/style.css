@@ -1,56 +1,26 @@
 body {
     margin: 0;
-    background: #0f0f23;
-    font-family: 'Courier New', monospace;
-    color: #0f0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    background-color: black;
+}
+
+#startScreen {
     text-align: center;
 }
 
-.game-container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #0f05;
-}
-
-h1 {
-    margin: 0 0 1rem;
-    font-size: 2em;
-    text-shadow: 0 0 10px #0f0;
+#startButton {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 #gameCanvas {
-    border: 2px solid #0f0;
-    border-radius: 5px;
-    background: #000;
-}
-
-.controls {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-button {
-    background: #0f0;
-    border: none;
-    padding: 10px 20px;
-    font-family: inherit;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-button:hover {
-    background: #0f0;
-    box-shadow: 0 0 15px #0f0;
-}
-
-#timer {
-    font-size: 1.5em;
+    border: 1px solid white;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
 }
