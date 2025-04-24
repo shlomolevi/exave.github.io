@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touhou Project</title>
-    <link rel="stylesheet" href="css/style.css">
-	<link rel="icon" href="/favicon/favicon.ico" sizes="any">
-	<link rel="icon" type="image/png" href="/favicon/icon-192.png" sizes="192x192">
+    <title>Онлайн Крестики-нолики (PeerJS)</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="startScreen">
-        <button id="startButton">Start Game</button>
+    <div class="game-container">
+        <h1>🎮 Крестики-нолики (P2P)</h1>
+        
+        <div class="connection-panel">
+            <p>Ваш ID: <span id="yourId">...</span></p>
+            <input type="text" id="peerIdInput" placeholder="ID соперника">
+            <button id="connectBtn">Подключиться</button>
+            <button id="startNewBtn">Новая игра</button>
+        </div>
+
+        <div id="status">Ожидание подключения...</div>
+        
+        <div id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
     </div>
-    <canvas id="gameCanvas" style="display: none;"></canvas>
-    <script src="js/game.js"></script>
+
+    <!-- Подключаем PeerJS -->
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

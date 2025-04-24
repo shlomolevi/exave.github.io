@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+.game-container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.connection-panel {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.connection-panel input {
+    padding: 8px;
+    margin: 5px;
+    width: 200px;
+}
+
+.connection-panel button {
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-gap: 5px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cell:hover {
+    background: #eee;
+}
+
+.cell.x::before {
+    content: "X";
+    color: #ff4757;
+}
+
+.cell.o::before {
+    content: "O";
+    color: #2ed573;
+}
+
+#status {
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#yourId {
+    font-family: monospace;
+    background: #ddd;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
