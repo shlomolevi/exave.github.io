@@ -1,83 +1,182 @@
+/* Основные цвета в стиле "Бимбо" */
+:root {
+  --pink: #ff9ff3;
+  --hot-pink: #ff6b9d;
+  --glitter: #f9f4ff;
+  --purple: #d6a3ff;
+  --white: #fff0f5;
+  --black: #3d3d3d;
+}
+
+/* Милый рукописный шрифт (если пользователь его не имеет, запасной - Comic Sans) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Comic+Neue:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f5f5f5;
+  font-family: 'Comic Neue', cursive, sans-serif;
+  background-color: var(--white);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 155, 243, 0.2) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(214, 163, 255, 0.2) 0%, transparent 20%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--black);
 }
 
+/* Контейнер игры с блестками и розовой обводкой */
 .game-container {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: var(--glitter);
+  padding: 25px;
+  border-radius: 20px;
+  border: 4px dashed var(--hot-pink);
+  box-shadow: 
+    0 0 15px rgba(255, 107, 157, 0.5),
+    0 0 30px rgba(255, 159, 243, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Блестки (анимированные) */
+.game-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 214, 255, 0.8) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  animation: glitter 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes glitter {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+/* Заголовок с милым шрифтом */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--hot-pink);
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+}
+
+/* Панель подключения */
 .connection-panel {
-    margin-bottom: 20px;
-    padding: 10px;
-    background: #f0f0f0;
-    border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 214, 255, 0.5);
+  border-radius: 15px;
+  border: 2px solid var(--pink);
 }
 
 .connection-panel input {
-    padding: 8px;
-    margin: 5px;
-    width: 200px;
+  padding: 10px;
+  margin: 5px;
+  width: 200px;
+  border: 2px solid var(--purple);
+  border-radius: 10px;
+  background-color: var(--white);
 }
 
 .connection-panel button {
-    padding: 8px 15px;
-    margin: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: var(--hot-pink);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
+.connection-panel button:hover {
+  background-color: var(--purple);
+  transform: scale(1.05);
+}
+
+/* Игровое поле */
 #board {
-    display: grid;
-    grid-template-columns: repeat(3, 80px);
-    grid-gap: 5px;
-    margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  margin: 20px auto;
 }
 
+/* Клетки с сердечками при наведении */
 .cell {
-    width: 80px;
-    height: 80px;
-    background: white;
-    border: 2px solid #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 36px;
-    cursor: pointer;
-    transition: background 0.3s;
+  width: 100px;
+  height: 100px;
+  background-color: var(--white);
+  border: 3px solid var(--pink);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
 }
 
 .cell:hover {
-    background: #eee;
+  background-color: rgba(255, 159, 243, 0.2);
+  transform: scale(1.05);
 }
 
+.cell:hover::after {
+  content: "❤";
+  position: absolute;
+  font-size: 20px;
+  color: var(--hot-pink);
+  top: 5px;
+  right: 5px;
+  opacity: 0.7;
+}
+
+/* Стили для крестиков и ноликов */
 .cell.x::before {
-    content: "X";
-    color: #ff4757;
+  content: "X";
+  color: var(--hot-pink);
+  font-weight: bold;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .cell.o::before {
-    content: "O";
-    color: #2ed573;
+  content: "O";
+  color: var(--purple);
+  font-weight: bold;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
+/* Статус игры */
 #status {
-    font-size: 18px;
-    margin: 10px 0;
-    font-weight: bold;
+  font-size: 1.5rem;
+  margin: 15px 0;
+  font-weight: bold;
+  color: var(--hot-pink);
+  background-color: rgba(255, 214, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
 }
 
+/* ID игрока */
 #yourId {
-    font-family: monospace;
-    background: #ddd;
-    padding: 2px 5px;
-    border-radius: 3px;
+  font-family: monospace;
+  background-color: rgba(255, 159, 243, 0.3);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--hot-pink);
+  font-weight: bold;
 }
