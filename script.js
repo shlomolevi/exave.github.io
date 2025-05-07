@@ -12,11 +12,17 @@ const chatInput = document.getElementById('chatInput');
 const sendMessageBtn = document.getElementById('sendMessageBtn');
 
 // Функция для добавления сообщения в чат
-function addMessage(text, isYou = false) {
+function addMessage(text, isYou = true) {
+    if (!text) return;
+    
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
-    if (isYou) messageDiv.classList.add('you');
-    messageDiv.textContent = text;
+    if (isYou) {
+        messageDiv.classList.add('you');
+        messageDiv.textContent = `Вы: ${text}`;
+    } else {
+        messageDiv.textContent = `Соперник: ${text}`;
+    }
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -46,14 +52,14 @@ function setupConnection() {
             restartGame();
             updateStatus(`Вы играете за ${playerRole}. Ход: ${currentPlayer}`);
         } else if (data.type === "chat") {
-            addMessage(data.message);
+            addMessage(data.message, false); // false - сообщение от соперника
         }
     });
 
     conn.on("close", () => {
         updateStatus("Соперник отключился.");
         gameActive = false;
-        addMessage("Соперник покинул чат");
+        addMessage("Соперник покинул чат", false);
     });
 }
 

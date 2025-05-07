@@ -233,15 +233,15 @@ h1 {
 }
 
 /* Стили для сообщений */
-.message {
-    margin-bottom: 8px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: rgba(255, 159, 243, 0.2);
-    word-wrap: break-word;
-}
-
 .message.you {
     background-color: rgba(214, 163, 255, 0.3);
     text-align: right;
+    color: var(--hot-pink);
+}
+
+.message {
+    background-color: rgba(255, 159, 243, 0.2);
+    margin: 5px;
+    padding: 8px;
+    border-radius: 10px;
 }
