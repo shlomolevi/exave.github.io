@@ -6,6 +6,57 @@ let gameBoard = ["", "", "", "", "", "", "", "", ""];
 let playerRole = null; // "X" или "O"
 let gameActive = false;
 
+// Добавляем в начало script.js (после объявления переменных)
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendMessageBtn = document.getElementById('sendMessageBtn');
+
+// Функция для добавления сообщения в чат
+function addMessage(text, isYou = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    if (isYou) messageDiv.classList.add('you');
+    messageDiv.textContent = text;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Отправка сообщения
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message && conn && conn.open) {
+        conn.send({ type: "chat", message });
+        addMessage(message, true);
+        chatInput.value = '';
+    }
+}
+
+// Обработчик отправки сообщения
+sendMessageBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
+
+// Обновляем обработчик данных соединения
+function setupConnection() {
+    conn.on("data", (data) => {
+        if (data.type === "move") {
+            handleRemoteMove(data.index);
+        } else if (data.type === "restart") {
+            restartGame();
+            updateStatus(`Вы играете за ${playerRole}. Ход: ${currentPlayer}`);
+        } else if (data.type === "chat") {
+            addMessage(data.message);
+        }
+    });
+
+    conn.on("close", () => {
+        updateStatus("Соперник отключился.");
+        gameActive = false;
+        addMessage("Соперник покинул чат");
+    });
+}
+
 // Инициализация PeerJS
 function initPeer() {
     peer = new Peer();
