@@ -80,6 +80,46 @@ function initPeer() {
     });
 }
 
+document.getElementById('copyIdBtn').addEventListener('click', copyPeerId);
+
+function copyPeerId() {
+    const peerId = document.getElementById('yourId').textContent;
+    
+    // Создаем временный элемент input
+    const tempInput = document.createElement('input');
+    tempInput.value = peerId;
+    document.body.appendChild(tempInput);
+    
+    // Выделяем и копируем текст
+    tempInput.select();
+    document.execCommand('copy');
+    
+    // Удаляем временный элемент
+    document.body.removeChild(tempInput);
+    
+    // Показываем уведомление
+    showCopyNotification();
+}
+
+function showCopyNotification() {
+    const notification = document.createElement('div');
+    notification.textContent = 'ID скопирован!';
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.right = '20px';
+    notification.style.backgroundColor = 'var(--hot-pink)';
+    notification.style.color = 'white';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = '1000';
+    
+    document.body.appendChild(notification);
+    
+    // Автоматически исчезает через 2 секунды
+    setTimeout(() => {
+        document.body.removeChild(notification);
+    }, 2000);
+}
 // Настройка соединения
 function setupConnection() {
     conn.on("data", (data) => {
