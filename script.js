@@ -11,38 +11,6 @@ const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendMessageBtn = document.getElementById('sendMessageBtn');
 
-// Функция для добавления сообщения в чат
-function addMessage(text, isYou = true) {
-    if (!text) return;
-    
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message');
-    if (isYou) {
-        messageDiv.classList.add('you');
-        messageDiv.textContent = `Вы: ${text}`;
-    } else {
-        messageDiv.textContent = `Соперник: ${text}`;
-    }
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Отправка сообщения
-function sendMessage() {
-    const message = chatInput.value.trim();
-    if (message && conn && conn.open) {
-        conn.send({ type: "chat", message });
-        addMessage(message, true);
-        chatInput.value = '';
-    }
-}
-
-// Обработчик отправки сообщения
-sendMessageBtn.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
-
 // Обновляем обработчик данных соединения
 function setupConnection() {
     conn.on("data", (data) => {
